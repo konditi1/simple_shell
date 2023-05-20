@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
 /**
 * prompt - Displays the command prompt.
 */
@@ -11,7 +10,6 @@ void prompt(void)
 /* Display the prompt */
 custom_puts(" $ ");
 }
-
 /**
 * handle_error - Handles error conditions and exits.
 * @message: The error message to display.
@@ -22,12 +20,8 @@ void handle_error(const char *message)
 perror(message);
 exit(EXIT_FAILURE);
 }
-
 /**
 * handle_other_errors - Handles other error conditions.
-*
-* This function is responsible for handling other error conditions,
-* such as when the line length exceeds a certain limit.
 */
 void handle_other_errors(void)
 {
@@ -37,14 +31,8 @@ size_t message_len = sizeof(error_message) - 1;
 
 write(STDERR_FILENO, error_message, message_len);
 }
-
 /**
 * main - Entry point of the program.
-*
-* This function implements the main loop of the program,
-* where it prompts the user for input, reads the input line,
-* and executes the specified command.
-*
 * Return: Always 0.
 */
 int main(void)
@@ -86,7 +74,6 @@ execute_command(argv[0], argv);
 free(argv);
 }
 }
-
 free(line);
 return (0);
 }
