@@ -32,7 +32,10 @@ exit(EXIT_FAILURE);
 void handle_other_errors(void)
 {
 /* Handle other error conditions, such as line length exceeding a limit */
-fprintf(stderr, "Error: Line too long\n");
+const char error_message[] = "Error: Line too long\n";
+size_t message_len = sizeof(error_message) - 1;
+
+write(STDERR_FILENO, error_message, message_len);
 }
 
 /**

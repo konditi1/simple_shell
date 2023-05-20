@@ -1,9 +1,7 @@
 #include "main.h"
-
 /**
 * parse_line - Parses a line into an array of tokens.
 * @line: The input line to parse.
-*
 * Return: An array of tokens.
 */
 char **parse_line(char *line)
@@ -33,7 +31,6 @@ return (argv);
 * execute_command - Executes a command with its arguments.
 * @command: The command to execute.
 * @argv: An array of arguments for the command.
-*
 * Return: 0 on success, -1 on failure.
 */
 int execute_command(char *command, char **argv)
@@ -63,15 +60,12 @@ handle_error("fork");
 }
 else if (pid == 0)
 {
-/* Child process */
 execvp(command, argv);
-
 /* If execvp returns, an error occurred */
 handle_error("execvp");
 }
 else
 {
-/* Parent process */
 int status;
 
 if (waitpid(pid, &status, 0) == -1)
