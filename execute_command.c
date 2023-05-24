@@ -37,7 +37,15 @@ int execute_command(char *command, char **argv)
 {
 if (custom_strcmp(command, "exit") == 0)
 {
+if (argv[1] != NULL)
+{
+int status = custom_atoi(argv[1]);
+exit(status);
+}
+else
+{
 exit(EXIT_SUCCESS);
+}
 }
 else if (custom_strcmp(command, "env") == 0)
 {
@@ -57,9 +65,9 @@ execute_child_process(argv);
 return (0);
 }
 /**
- * execute_child_process - Executes the child process with the given arguments.
- * @argv: An array of arguments for the command.
- */
+* execute_child_process - Executes the child process with the given arguments.
+* @argv: An array of arguments for the command.
+*/
 void execute_child_process(char **argv)
 {
 pid_t pid = fork();
@@ -122,4 +130,43 @@ dest_ptr[i] = src_ptr[i];
 return (dest);
 }
 
+/**
+* custom_atoi - Converts a string to an integer.
+* @str: The input string to convert.
+*
+* This function converts the given string @str to an integer.
+* It skips leading whitespace characters, handles the sign,
+* and converts the digits to an integer value.
+*
+* Return: The converted integer value.
+*/
+int custom_atoi(const char *str)
+{
+int result = 0;
+int sign = 1;
+int i = 0;
+
+/* Handling leading whitespace */
+while (str[i] == ' ' || str[i] == '\t')
+{
+i++;
+}
+/* Handling sign */
+if (str[i] == '-')
+{
+sign = -1;
+i++;
+}
+else if (str[i] == '+')
+{
+i++;
+}
+/* Converting digits to integer */
+while (str[i] >= '0' && str[i] <= '9')
+{
+result = result * 10 + (str[i] - '0');
+i++;
+}
+return (result *sign);
+}
 

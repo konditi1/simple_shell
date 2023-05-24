@@ -22,6 +22,7 @@ void handle_other_errors(void);
 int custom_strcmp(const char *str1, const char *str2);
 void *custom_memcpy(void *dest, const void *src, size_t n);
 void execute_child_process(char **argv);
+int custom_atoi(const char *str);
 
 #endif
 
