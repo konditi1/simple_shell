@@ -25,7 +25,7 @@ void handle_other_errors(void)
 {
 /* Handle other error conditions, such as line length exceeding a limit */
 const char error_message[] = "Error: Line too long\n";
-size_t message_len = sizeof(error_message) - 1;
+size_t message_len = custom_strlen(error_message) - 1;
 
 write(STDERR_FILENO, error_message, message_len);
 }
