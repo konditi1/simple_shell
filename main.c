@@ -50,7 +50,6 @@ read_status = getline(&line, &bf, stdin);
 if (read_status == -1)
 {
 free(line);
-custom_putchar('\n');
 exit(EXIT_SUCCESS);
 }
 else if (read_status == -2)
