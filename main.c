@@ -5,8 +5,11 @@
 */
 void prompt(void)
 {
-/* Display the prompt */
+ /* Display the prompt */ 
+if (isatty(STDIN_FILENO) == 1)
+{
 custom_puts(" $ ");
+}
 }
 /**
 * handle_error - Handles error conditions and exits.
@@ -25,7 +28,7 @@ void handle_other_errors(void)
 {
 /* Handle other error conditions, such as line length exceeding a limit */
 const char error_message[] = "Error: Line too long\n";
-size_t message_len = custom_strlen(error_message) - 1;
+size_t message_len = custom_strlen(error_message) -1;
 
 write(STDERR_FILENO, error_message, message_len);
 }
@@ -46,15 +49,18 @@ prompt();
 read_status = getline(&line, &bf, stdin);
 if (read_status == -1)
 {
-if (errno == 0)
-{
-custom_putchar('\n');
+free (line);
 exit(EXIT_SUCCESS);
-}
-else
-{
-handle_error("getline");
-}
+/*if (errno == 0)
+*{
+*custom_putchar('\n');
+*exit(EXIT_SUCCESS);
+*}
+*else
+*{
+*handle_error("getline");
+*}
+*/
 }
 else if (read_status == -2)
 {
